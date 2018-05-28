@@ -1,0 +1,18 @@
+Sub test() ' ここからマクロはじめるよー
+    ' シート1の2行目から（多分ヘッダがありそうなので）一番下の行までを繰り返していく
+    For row = 2 To Worksheets("Sheet1").Cells(1, 1).End(xlDown).row()
+        ' シート1の1列目の値を取得する
+        a_row_no = Worksheets("Sheet1").Cells(row, 1)
+        ' ここからシート2を全て繰り返してなめていく
+        For sheet2_row = 2 To Worksheets("Sheet2").Cells(1, 1).End(xlDown).row()
+            ' シート2の1列目を順番に取得する
+            sheet2_a_row_no = Worksheets("Sheet2").Cells(sheet2_row, 1)
+            ' シート1の値とシート2の値が一緒だったら
+            If a_row_no = sheet2_a_row_no Then
+                ' シート1の2列目に値をどかーん
+                copy_hoge = Worksheets("Sheet2").Cells(sheet2_row, 2)
+                Worksheets("Sheet1").Cells(row, 2).Value = copy_hoge
+            End If
+        Next
+    Next
+End Sub
